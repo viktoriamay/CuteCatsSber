@@ -20,11 +20,9 @@ class Card {
         if (!this._data.favorite) {
             cardLike.classList.add('card__like-dislike')
         }
-        
+
         cardTitle.textContent = this._data.name;
         cardImage.src = this._data.image;
-        console.log(this._data);
         return this.element;
-        
     }
 }
