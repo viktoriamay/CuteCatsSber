@@ -2,14 +2,12 @@ class Card {
     constructor(data, selectorTemplate) {
         this._data = data;
         this._selectorTemplate = selectorTemplate;
-        
     }
 
     _getTemplate() {
         return document
             .querySelector(this._selectorTemplate)
-            .content.querySelector('.card');
-            
+            .content.querySelector('.card'); 
     }
 
     getElement() {
@@ -19,7 +17,6 @@ class Card {
         cardTitle.textContent = this._data.name;
         cardImage.src = this._data.image;
         return this.element;
+        
     }
 }
-
-const card = new Card(cats[0]);

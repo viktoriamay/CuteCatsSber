@@ -2,17 +2,13 @@ const cardsContainer = document.querySelector('.cards');
 const btnOpenPopupForm = document.querySelector('#add');
 const formCatAdd = document.querySelector('#popup-form-cat');
 
+const favoriteBtn = document.querySelector('.card__like');
+
 const popupAddCat = new Popup('popup-add-cats');
 popupAddCat.setEventListener();
 
 btnOpenPopupForm.addEventListener('click', () => {
   popupAddCat.open();
-});
-
-cats.forEach(function (catData) {
-  const cardInstance = new Card(catData, '#card-template');
-  const newCardElement = cardInstance.getElement();
-  cardsContainer.append(newCardElement);
 });
 
 formCatAdd.addEventListener('submit', handleFormAddCat);
@@ -23,11 +19,12 @@ function serializeForm(elements) {
     elements.forEach((input) => {
         if (input.type === 'submit') {
             return
-        };
-        
+        }
+
         if (input.type !== 'checkbox') {
             formData[input.name] = input.value
         }
+
         if (input.type === 'checkbox') {
             formData[input.name] = input.checked;
         }
@@ -36,12 +33,24 @@ function serializeForm(elements) {
     return formData;
 }
 
+function createCat(dataCat) {
+    const cardInstance = new Card(dataCat, '#card-template');
+    const newCardElement = cardInstance.getElement();
+    cardsContainer.append(newCardElement);
+}
+
 function handleFormAddCat(e) {
     e.preventDefault();
     const elementsFormCat = [...formCatAdd.elements];
     const dataFromForm = serializeForm(elementsFormCat);
-    const cardInstance = new Card(dataFromForm, '#card-template');
-    const newCardElement = cardInstance.getElement();
-    cardsContainer.append(newCardElement);
+    api.addNewCat(dataFromForm).then(() => {
+        createCat(dataFromForm);
+    })
     popupAddCat.close();
 }
+
+api.getAllCats().then((data) => {
+    data.forEach(function (catData) {
+        createCat(catData);
+    });
+})
