@@ -10,7 +10,6 @@ class Api {
     constructor(config) {
         this._url = config.url;
         this._headers = config.headers;
-        console.log('API');
     }
 
     getAllCats() {
@@ -46,7 +45,7 @@ class Api {
             method: 'DELETE',
         });
     }
-    
+
     getCatById(idCat) {
         fetch(`${this._url}/show/${idCat}`, {
             method: 'GET',
