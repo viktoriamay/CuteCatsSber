@@ -49,6 +49,10 @@
     z-index: 2;
 }
 
+.card__like-dislike {
+    color: grey;
+}
+
 .card::before {
     content: '';
     position: absolute;

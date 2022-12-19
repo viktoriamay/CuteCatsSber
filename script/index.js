@@ -2,8 +2,6 @@ const cardsContainer = document.querySelector('.cards');
 const btnOpenPopupForm = document.querySelector('#add');
 const formCatAdd = document.querySelector('#popup-form-cat');
 
-const favoriteBtn = document.querySelector('.card__like');
-
 const popupAddCat = new Popup('popup-add-cats');
 popupAddCat.setEventListener();
 
@@ -22,7 +20,7 @@ function serializeForm(elements) {
         }
 
         if (input.type !== 'checkbox') {
-            formData[input.name] = input.value
+            formData[input.name] = input.value;
         }
 
         if (input.type === 'checkbox') {
