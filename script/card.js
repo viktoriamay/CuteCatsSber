@@ -3,7 +3,7 @@ class Card {
         this._data = data;
         this._selectorTemplate = selectorTemplate;
     }
-
+    
     _getTemplate() {
         return document
             .querySelector(this._selectorTemplate)
@@ -21,8 +21,15 @@ class Card {
             cardLike.classList.add('card__like-dislike')
         }
 
+        const popupEditCat = new Popup('popup-edit-cats');
+        popupEditCat.setEventListener();
+
+        cardTitle.addEventListener('click', () => {
+            popupEditCat.open();
+        });
+        
         cardTitle.textContent = this._data.name;
         cardImage.src = this._data.image;
-        return this.element;
+        return this.element;   
     }
 }

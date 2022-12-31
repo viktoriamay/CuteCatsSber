@@ -12,7 +12,7 @@ popupLogin.setEventListener();
 
 btnOpenPopupForm.addEventListener('click', () => {
   popupAddCat.open();
-});
+}); 
 
 btnOpenPopupLogin.addEventListener('click', () => popupLogin.open());
 
@@ -65,28 +65,16 @@ function handleFormLogin(e) {
     popupLogin.close();
 }
 
-api.getAllCats().then((data) => {
-    data.forEach(function (catData) {
-        createCat(catData);
-    });
-})
-
 const isAuth = Cookies.get('email');
 if (!isAuth) {
     popupLogin.open();
     btnOpenPopupLogin.classList.remove('visually-hidden');
 }
 
-/* 
-супер нужный код для себя в будущем
-
 function checkLocalStorage() {
     const localData = JSON.parse(localStorage.getItem('cats'));
-    console.log(localData); 
     const getTimeExpires = localStorage.getItem('catsRefresh');
     const isActual = new Date() < new Date(getTimeExpires);
-
-    console.log(new Date(getTimeExpires));
 
     if (localData && localData.length && isActual) {
         localData.forEach(function (catData) {
@@ -109,4 +97,4 @@ function setDataRefresh(minutes, key) {
     return setTime;
 }
 
-checkLocalStorage() */
+checkLocalStorage();
